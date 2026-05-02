@@ -261,7 +261,37 @@ Run full solution in Visual Studio 2026:
 
 ---
 
+# 5.1 CI/CD & Tests
+
+Add CI/CD and testing strategy (GitHub Actions + xUnit/Pact):
+
+- CI with GitHub Actions: build, run unit tests, run integration tests (ephemeral SQL Server + DbUp migrations), run contract tests, and publish artifacts.
+- Unit tests: create xUnit projects co-located with Application/Domain projects (naming: *.Tests) to cover business logic and handlers.
+- Integration tests: run against a throwaway SQL Server (Docker action/service). Integration test setup MUST run DbUp migrations to bring schema to expected version and seed required test data. Tests should verify migrations applied and include a migration-rollback verification step where feasible.
+- Contract tests: add consumer/provider contracts (e.g., Pact or HTTP contract tests) for Weather.Api to validate API surface with consumers. Run provider verification in CI.
+- Coverage & Quality: collect code coverage (e.g., coverlet) and fail CI if below threshold (configurable). Run static analysis/formatters as needed.
+- Secrets & config: use GitHub Secrets for connection strings; CI should inject them as env vars. Document local dev secrets workflow (dotnet user-secrets or env files excluded from repo).
+- Artifacts & releases: publish build artifacts and test reports (JUnit/coverage) from CI; include an optional CD job to publish container images or releases when on main branch.
+- Example workflow: add .github/workflows/ci.yml template that:
+  1. Checks out code and sets up .NET 10
+  2. Restores and builds solution
+  3. Runs unit tests with coverage
+  4. Starts SQL Server service (or Docker container), waits for readiness
+  5. Runs DbUp migrations (console project) against the ephemeral DB
+  6. Runs integration tests against the migrated DB
+  7. Runs contract/provider verification tests
+  8. Publishes test results and coverage reports
+
 # 6. Execution Workflow
+
+For each step:
+
+1. Run Copilot CLI prompt
+2. Review generated changes
+3. Accept or adjust
+4. Proceed to next step
+
+---
 
 For each step:
 

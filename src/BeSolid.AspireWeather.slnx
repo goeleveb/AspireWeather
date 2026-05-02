@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="BeSolid.AspireWeather.AppHost/BeSolid.AspireWeather.AppHost.csproj" />
+  <Project Path="BeSolid.AspireWeather.ServiceDefaults/BeSolid.AspireWeather.ServiceDefaults.csproj" />
+  <Project Path="BeSolid.AspireWeather.Weather.Api/BeSolid.AspireWeather.Weather.Api.csproj" />
+  <Project Path="BeSolid.AspireWeather.Weather.Application/BeSolid.AspireWeather.Weather.Application.csproj" />
+  <Project Path="BeSolid.AspireWeather.Weather.DbUp/BeSolid.AspireWeather.Weather.DbUp.csproj" />
+  <Project Path="BeSolid.AspireWeather.Weather.Domain/BeSolid.AspireWeather.Weather.Domain.csproj" />
+  <Project Path="BeSolid.AspireWeather.Weather.Infrastructure/BeSolid.AspireWeather.Weather.Infrastructure.csproj" />
+</Solution>
